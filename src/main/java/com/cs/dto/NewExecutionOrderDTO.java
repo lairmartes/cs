@@ -15,6 +15,7 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 @JsonInclude(Include.NON_NULL)
+// it looks like this is the only class that is extending OpenBookDTO. Even that class is extending another class with one field... it this hierarchy necessary?
 public class NewExecutionOrderDTO extends OpenBookDTO{
 
 	private static final long serialVersionUID = 1L;
