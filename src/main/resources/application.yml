@@ -1,0 +1,29 @@
+spring:
+    devtools:
+        remote.secret: teste 
+        add-properties: true
+    jackson:
+        serialization:
+            indent-output: true
+    datasource:
+        url: jdbc:h2:mem:cs;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+        driverClassName: org.h2.Driver
+        username: sa
+        password:
+    jpa:
+        show-sql: true
+        hibernate:
+            ddl-auto: create
+            naming:
+                physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        properties:
+            hibernate:
+               dialect: org.hibernate.dialect.H2Dialect
+               format-sql: true 
+    h2:
+        console:
+            enabled: true
+springdoc:
+  swagger-ui:
+    path: /swagger-ui-custom.html 
+    operations-sorter: method
