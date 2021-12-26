@@ -29,6 +29,7 @@ import lombok.ToString;
 @ToString
 @Entity
 @Table(name="BOOK")
+//I'm pretty sure entities does not need to implements Serializable and provide serialVersionUID.
 public class BookEntity implements Serializable{
 
 	private static final long serialVersionUID = 1L;
