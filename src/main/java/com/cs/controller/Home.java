@@ -30,7 +30,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class Home {
     
-	@Autowired
+	// you can replace @Autowire by declaring member atributes as private final
+	@Autowire
 	private BookService bookService;
 
 	@Autowired
@@ -44,6 +45,7 @@ public class Home {
 		return "<h2>Rest doc ->  <a href='http://localhost:8080/swagger-ui/index.html' target='_blank'>Swagger ui for code challenge</a></h2>";
 	}
 
+	// in composed names, it's best call composed name separated with a dash (/open-book)
 	@PostMapping(path = "/openBook", consumes = MediaType.APPLICATION_JSON_VALUE ,produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<OpenBookDTO> openBook(	@RequestBody(required = true)
 																@NotNull(message = "Book name cannot be null.") 
@@ -54,6 +56,7 @@ public class Home {
 		return response;
 	}
 
+	// split entity and service in the path (/order/create)
 	@PostMapping(path = "/createOrder", consumes = MediaType.APPLICATION_JSON_VALUE ,produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<OrderDTO> createOrder(  @RequestBody(required = true) 
 																@NotNull(message = "Order cannot be null.") 
@@ -64,6 +67,7 @@ public class Home {
 		return response;
 	}
 
+	// same here in path name: (/order/execute) <- note the verb, not the noun
 	@PostMapping(path = "/executionOrder", consumes = MediaType.APPLICATION_JSON_VALUE ,produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<NewExecutionOrderDTO> executionOrder(  @RequestBody(required = true) 
 																	@NotNull(message = "Order cannot be null.") 
@@ -73,7 +77,7 @@ public class Home {
 		ResponseEntity<NewExecutionOrderDTO> response =  new ResponseEntity<NewExecutionOrderDTO>(o, HttpStatus.OK);
 		return response;
 	}
-	
+	// same here in path name: (/order/execution/book/{id}) <- now "execution" must be a noun.  I just didn't undestand if "book" is another entity.
 	@GetMapping(path = "/executionOrder/bookId/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<BookDTO> getExecutionResult(@PathVariable("id") @NotNull @NotBlank Long bookId) {
 		BookDTO dto = this.bookService.getBookById(bookId);
