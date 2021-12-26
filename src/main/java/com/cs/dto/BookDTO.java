@@ -16,8 +16,10 @@ import lombok.ToString;
 @AllArgsConstructor
 @EqualsAndHashCode
 @ToString
+// Serializable is not required for Json serialization.
 public class BookDTO implements Serializable{
 
+	// not required
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
@@ -28,7 +30,7 @@ public class BookDTO implements Serializable{
 
     private List<OrderDTO> orders;
 
-    private List<OrderExecutionResultDTO> executionResult;
-
+    private List<OrderExecutionResultDTO> executionResult
+	    
     private NewExecutionOrderDTO executionOrder;
 }
